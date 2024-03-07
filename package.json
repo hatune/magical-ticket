@@ -2,13 +2,12 @@
   "name": "magical-ticket",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.ts",
   "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.42.1",
     "@types/node": "^20.11.25"
   }
 }
