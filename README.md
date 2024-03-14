@@ -6,7 +6,7 @@
 
 ## 必要なもの
 
-- [Node.js](https://nodejs.org/en)
+Node.jsかPowerShell
 
 ## 情報入力
 
@@ -22,6 +22,12 @@
 ```
 npm install
 node app.ts
+```
+
+またはPowerShellで
+
+```
+./app.ps1 -ExecutionPolicy Bypass
 ```
 
 出力されたJSを個人情報入力の画面で、ブラウザのDeveloper Tool（F12で出るやつ）のコンソールに貼り付けて実行します。
