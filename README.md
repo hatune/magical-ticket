@@ -34,9 +34,22 @@ node app.ts
 （
 都道府県の select 順が都道府県コード順であると想定して作ってるので、もしかしたらずれるかも）
 
-## Playwright
+# もっと楽するための Playwright
 
-ぴあ ID 入れるところまで動くはず。
+ぴあ ID を入れるところまで一気に実行します。時々わざと待ちを入れてます。
+
+## 準備
+
+- VSCode
+- Playwright Test for VSCode
+
+VSCode いれて、VSCode 上でエクステンションの Playwright Test for VSCode をインストールする。
+
+コマンドラインでもいけるけどどうも終了後にブラウザを終了してしまう
+
+`npm install` も必要です。
+
+## 追加情報入力
 
 setting.json に`url`と`公演番号`が必要
 
@@ -47,3 +60,9 @@ setting.json に`url`と`公演番号`が必要
 // 開催日時順に、1からかぞえた番号（0からじゃないよ）
 "公演番号": 2
 ```
+
+## 実行
+
+VSCode で `e2e/magical.spec.ts` 開いて、`test('magical', async ({ page }) => {` の左にマウスオーバーで出る三角をクリックして実行。
+
+あるいは Testing メニューから実行

@@ -72,7 +72,8 @@ test('magical', async ({ page }) => {
 
   await page.locator('input[name=entry6]').click()
 
-  // ぴあID Chromeとかの自動入力効くのでそっちでよかろ
+  // await page.locator('input[name=loginId]').fill(settings['pia_id'])
+  // await page.locator('input[name=passwd]').fill(settings['pia_pwd'])
   // await page.locator('input[name=entry7]').click()
 
 })
