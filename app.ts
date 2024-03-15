@@ -8,7 +8,7 @@ const birthdayYearNum = parseInt(birthday[0]) - 1929
 const tel = s['電話番号'].split('-')
 const postal = s['郵便番号'].split('-')
 const genderNum = s['性別'] == '女' ? 0 : 1
-const prefNum = pref.findIndex((p) => p == s['都道府県']) +1
+const prefNum = pref.findIndex((p) => p == s['都道府県']) + 1
 
 console.log(`
 document.getElementsByName('cstmr_lnm')[0].value = '${s["姓"]}';
