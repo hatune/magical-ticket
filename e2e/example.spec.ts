@@ -41,8 +41,38 @@ test('magical', async ({ page })=> {
     await page.locator('input[name=cmnt21]').fill(settings['同行者名'])
     await page.locator('input[name=cmnt22]').fill(settings['同行者電話番号'])
   }
-  // await page.waitForTimeout(5000)
-  //await page.getByRole('button', {name: '希望公演選択へ'}).click()
+  // == 個人情報まででよければここから先をコメントアウト ==
+  await page.waitForTimeout(2000)// まごころ
+  await page.getByRole('button', {name: '希望公演選択へ'}).click()
 
+  const en = parseInt(settings['公演番号']) + 1
+  await page.locator('input[name=hope_event_perf_cd]').nth(en).check()
+  await page.waitForTimeout(1000)// まごころ
+  await page.locator('input[name=entry3]').click()
+
+  // == ここから座席選択 このあたりから手動のほうがよいかも
+  // == めんどうなのでSSしかとれない 企画展の有無とかよくわかんない
+  await page.locator('input[name=hope_stk_stknd_cd]').nth(0).check()
+  await page.locator('input[name=entry4-1]').click()
+
+  if (settings['同行者名']){
+    await page.locator('select[name=hope_numsht]').selectOption('2枚')
+  } else {
+    await page.locator('select[name=hope_numsht]').selectOption('1枚')
+  }
+  await page.locator('input[name=entry5]').click()
+
+  // 希望追加へ
+  //await page.locator('input[value="希望追加へ"]').click()
+
+  await page.locator('input[value="決済方法選択へ"]').click()
+
+  //セブン-イレブンで支払い
+  await page.locator('input[name=stlmnt_mtd_typ]').nth(0).check()
+
+  await page.locator('input[name=entry6]').click()
+
+  // ぴあID Chromeとかの自動入力効くのでそっちでよかろ
+  // await page.locator('input[name=entry7]').click()
 
 })

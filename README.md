@@ -38,4 +38,15 @@ node app.ts
 
 ## Playwright
 
-とりあえず個人情報入力までは動くはず。ボタンはまだおさない
+ぴあID入れるところまで動くはず。
+
+setting.jsonに`url`と`公演番号`が必要
+
+
+```
+// 申し込みのULR
+"url": "https://pia.jp/piajp/v/magicalmirai24-1/",
+
+// 開催日時順に、1からかぞえた番号（0からじゃないよ）
+"公演番号": 2
+```
