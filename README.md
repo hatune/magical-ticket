@@ -63,6 +63,8 @@ setting.json に`url`と`公演番号`が必要
 
 ## 実行
 
-VSCode で `e2e/magical.spec.ts` 開いて、`test('magical', async ({ page }) => {` の左にマウスオーバーで出る三角をクリックして実行。
+```
+node main.mjs
+```
 
-あるいは Testing メニューから実行
+止まったら「次へ」的なボタンを手動でクリック
