@@ -1,4 +1,3 @@
-
 // node main.mjs
 
 import { chromium } from "playwright";
@@ -16,6 +15,7 @@ await page.getByRole("button", { name: "次へ" }).click();
 await page.getByRole("checkbox").nth(0).check();
 await page.getByRole("button", { name: "同意の上、申込画面へ" }).click();
 
+console.log("【個人情報入力】")
 await page.locator("input[name=cstmr_lnm]").fill(settings["姓"]);
 await page.locator("input[name=cstmr_fnm]").fill(settings["名"]);
 await page.locator("input[name=cstmr_lkn]").fill(settings["姓カナ"]);
@@ -54,42 +54,46 @@ if (settings["同行者名"]) {
     await page.locator("input[name=cmnt21]").fill(settings["同行者名"]);
     await page.locator("input[name=cmnt22]").fill(settings["同行者電話番号"]);
 }
-// == 個人情報まででよければここから先をコメントアウト ==
-//await page.waitForTimeout(2000); // まごころ
+
 // await page.getByRole("button", { name: "希望公演選択へ" }).click();
 
-// ここをクリックして次のバタン表示待ちにしたい
-console.log('please click')
-await page.waitForSelector("#wrap > form > section:nth-child(2) > div:nth-child(2) > input.next")
+console.log("【公演選択】")
 
-
-const en = parseInt(settings["公演番号"]) + 1;
-await page.locator("input[name=hope_event_perf_cd]").nth(en).check();
-await page.waitForTimeout(1000); // まごころ
-await page.locator("input[name=entry3]").click();
-
-// == ここから座席選択 このあたりから手動のほうがよいかも
-// == めんどうなのでSSしかとれない 企画展の有無とかよくわかんない
-await page.locator("input[name=hope_stk_stknd_cd]").nth(0).check();
-await page.locator("input[name=entry4-1]").click();
+console.log("【座席希望選択】……第一希望の枚数だけ自動で選択します")
+// await page.locator("input[name=hope_stk_stknd_cd]").nth(0).check();// 一番高い席
+// await page.locator("input[name=entry4-1]").click();
 
 if (settings["同行者名"]) {
-    await page.locator("select[name=hope_numsht]").selectOption("2枚");
+    await page.locator("select[name=hope_numsht]").selectOption("2枚", { timeout: 30 * 60 * 1000 });
 } else {
-    await page.locator("select[name=hope_numsht]").selectOption("1枚");
+    await page.locator("select[name=hope_numsht]").selectOption("1枚", { timeout: 30 * 60 * 1000 });
 }
-await page.locator("input[name=entry5]").click();
-
-// 希望追加へ
+//await page.locator("input[name=entry5]").click();
 //await page.locator('input[value="希望追加へ"]').click()
+//await page.locator('input[value="決済方法選択へ"]').click();
 
-await page.locator('input[value="決済方法選択へ"]').click();
+console.log("【支払い方法選択】")
+if (settings["セブン-イレブンで支払い"] === true) {
+    await page.locator("input[name=stlmnt_mtd_typ]").nth(0).check({ timeout: 30 * 60 * 1000 });
+    await page.locator("input[name=entry6]").click();
+} else {
+    await page.locator("input[name=stlmnt_mtd_typ]").nth(1).check({ timeout: 30 * 60 * 1000 });
+    const card = settings["credit"]
+    if (card) {
+        await page.locator("input[name=stlmnt_card_no]").fill(card['number'])
+        await page.locator("input[name=card_trmvld_year_da]").fill(card['year'])
+        let month = `${card["month"]}`
+        if (month.startsWith("0")) month = month[1]
+        await page.locator("select[name=card_trmvld_month_da]").selectOption(month)
+        await page.locator("input[name=card_pay_typ]").nth(0).check()// 一括で払え
+        await page.locator("input[name=scrtyCd]").fill(card['cvv'])
+    }
+    //await page.locator("input[name=entry6]").click({timeout: 30 * 60 * 1000});
+}
 
-//セブン-イレブンで支払い
-await page.locator("input[name=stlmnt_mtd_typ]").nth(0).check();
-
-await page.locator("input[name=entry6]").click();
-
-// ぴあID Chromeとかの自動入力効くのでそっちでよかろ
-// await page.locator('input[name=entry7]').click()
-//  await new Promise(() => {});
+console.log("【ぴあログイン】")
+const pia = settings['pia']
+if (pia && pia['id'] && pia['password']) {
+    await page.locator("input[name=loginId]").fill(pia["id"], { timeout: 30 * 60 * 1000 })
+    await page.locator("input[name=passwd]").fill(pia["password"])
+}
