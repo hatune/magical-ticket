@@ -1,6 +1,8 @@
 # Magical 入力補助
 
-個人情報の入力だけでも楽をするためのスクリプトを生成します
+個人情報の入力だけでも楽をするためのスクリプトを生成します。
+
+２名申し込みまでしか考慮していません。
 
 ## 必要なもの
 
@@ -36,26 +38,23 @@ node app.ts
 
 # もっと楽するための Playwright
 
-ぴあ ID を入れるところまで一気に実行します。時々わざと待ちを入れてます。
+画面遷移もある程度自動で行います。要所要所で待ちを発生させているので、そこは手動入力してください（後述）。
+
 
 ## 準備
 
-- VSCode
-- Playwright Test for VSCode
+Node.jsに加えてPlaywrightが必要です。
 
-VSCode いれて、VSCode 上でエクステンションの Playwright Test for VSCode をインストールする。
+`npm install` とか `npx playwright install`とかしてください。
 
-コマンドラインでもいけるけどどうも終了後にブラウザを終了してしまう
-
-`npm install` も必要です。
 
 ## 追加情報入力
 
-setting.json に`url`と`セブン-イレブンで支払い`と`pia`が必要
+setting.json に`url`と`セブン-イレブンで支払い`と`pia`が必要です。
 
 ```
 // 申し込みのULR
-"url": "https://pia.jp/piajp/v/magicalmirai24-1/",
+"url": "https://pia.jp/piajp/v/.../",
 
 // 支払い方法（コンビニ決済ならtrue）
 "セブン-イレブンで支払い": true
