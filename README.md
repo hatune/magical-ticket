@@ -8,6 +8,10 @@
 
 Node.js か PowerShell
 
+動作確認はNode.jsは概ね最新のもの、PowerShellは7.4を使用しています。
+
+__「Windows PowerShell」は使えません__ PowerShell 7以降をインストールして使用してください。Windows PowerShellは最新でも5.1なのであきらめてください。
+
 ## 情報入力
 
 リネームして編集
@@ -23,7 +27,7 @@ npm install
 node app.ts
 ```
 
-または PowerShell で
+または PowerShell (__PowerShell 7__) で
 
 ```
 ./app.ps1 -ExecutionPolicy Bypass
@@ -33,8 +37,7 @@ node app.ts
 
 フォームを埋めるだけなので、適宜内容を確認してから送信ボタンを押してください
 
-（
-都道府県の select 順が都道府県コード順であると想定して作ってるので、もしかしたらずれるかも）
+（都道府県の select 順が都道府県コード順であると想定して作ってるので、もしかしたらずれるかも）
 
 # もっと楽するための Playwright
 
