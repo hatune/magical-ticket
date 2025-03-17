@@ -63,7 +63,7 @@ setting.json に`url`と`セブン-イレブンで支払い`と`pia`が必要で
 "セブン-イレブンで支払い": true
 
 // クレジットカード情報（任意）
-"credit": {"number": "1234567890129921", "year": "2026", "month": "1", "cvv": "123"},
+"credit": {"number": "1234567890129921", "year": "2026", "month": "01", "cvv": "123"},
 
 // ぴあIDとパスワード
 "pia": {"id": "test@example.com", "password": "1243"},
