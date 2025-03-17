@@ -83,7 +83,8 @@ if (settings["セブン-イレブンで支払い"] === true) {
         await page.locator("input[name=stlmnt_card_no]").fill(card['number'])
         await page.locator("input[name=card_trmvld_year_da]").fill(card['year'])
         let month = `${card["month"]}`
-        if (month.startsWith("0")) month = month[1]
+        //if (month.startsWith("0")) month = month[1]
+        if (month.length == 1) month = '0' + month
         await page.locator("select[name=card_trmvld_month_da]").selectOption(month)
         await page.locator("input[name=card_pay_typ]").nth(0).check()// 一括で払え
         await page.locator("input[name=scrtyCd]").fill(card['cvv'])
