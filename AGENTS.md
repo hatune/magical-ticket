@@ -1,5 +1,11 @@
 # Repository Guidelines
 
+## Project overview
+
+- とあるチケット申し込みサイトに対して、楽をするためのスクリプトです。
+- 3つあるスクリプトファイルはすべて同じサイトのフォーム入力を簡略化するためのものです。
+- 楽をするためであって、全自動化を目的としていません。
+
 ## Project Structure & Module Organization
 - Root scripts:
   - `main.mjs`: Playwright-based browser automation (navigation + form assist).
