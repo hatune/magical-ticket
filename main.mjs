@@ -84,6 +84,7 @@ if (settings["セブン-イレブンで支払い"] === true) {
   const card = settings.credit;
   if (card) {
     await fillByName("stlmnt_card_no", card.number);
+    await fillByName("card_holder_name", card.name);
     await fillByName("card_trmvld_year_da", card.year);
     const month = String(card.month).padStart(2, "0");
     await selectByName("card_trmvld_month_da", month);
