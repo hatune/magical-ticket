@@ -100,3 +100,4 @@ if (pia?.id && pia?.password) {
   await fillByName("loginId", pia.id, { timeout: LONG_TIMEOUT });
   await fillByName("passwd", pia.password);
 }
+console.log("申込みが完了したら Ctrl+C でスクリプトを終了してください")
